@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "Nexa-Heavy";
+    src: url(./fonts/Nexa-Heavy.ttf);
+}
+
+body {
+    background-color: #3A445D;
+}
+
+.container {
+display: flex;
+align-items: center;
+min-width: none;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    color: #EDCBB1;
+}
+
+.ContainerAfazer, .ContainerFazendo, .ContainerFeito {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px;
+    width: 300px;   
+    min-height: 100px;
+    max-height: 700px;
+    background-color: #5E5768;
+    border-radius: 15px;
+    
+}
+p {
+    font-family: 'Nexa-Heavy';
+}
+
+::placeholder {
+    font-family: 'Nexa-Heavy';
+    color: #000;
+}
+#IdTarefa {
+    width: 250px;
+    height: 30px;
+    border-radius: 6px;
+    border-color: #5E5768;
+    background-color: #5E5768;
+
+}
+#IdTarefa:focus {
+    color: aqua;
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+

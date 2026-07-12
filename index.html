@@ -4,20 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organizador de tarefas</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav class="SupeirorBar">
+        <p>"Organizador de Tarefas"</p>
+    </nav>
     <div class="container">
         <!--Barra Superior-->
-        <nav class="supeirorBar">
-            <p>"Organizador de Tarefas"</p>
-        </nav>
         <!--Colunas de cada status das tarefas-->
-        <div class="containerAfazer">
+        <div class="ContainerAfazer">
         <div class="AfazerTittle">            
             <p>A Fazer</p>
         </div>
             <div class="AddTarefa">
-                <textarea name="NomeTarefa" id="NomeTarefa" placeholder="Tarefa..."></textarea>
+               <input type="text" name="NomeTarefa" id="IdTarefa" placeholder="Tarefa...">
                 <button class="AddBotao"></button>
             </div>
                 <div class="CardTarefa">
@@ -25,7 +26,7 @@
                 </div>
             </div>
 
-            <div class="containerFazendo">
+            <div class="ContainerFazendo">
             <div class="FazendoTittle">
                 <p>Fazendo</p>
             </div>
@@ -34,7 +35,7 @@
                 </div>
             </div>
 
-            <div class="containerFeito">
+            <div class="ContainerFeito">
                 <div class="FeitoTittle">
                     <p>Feito</p>
                </div>
