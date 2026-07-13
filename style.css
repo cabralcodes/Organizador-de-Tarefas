@@ -28,11 +28,11 @@ nav {
 
 .ContainerAfazer, .ContainerFazendo, .ContainerFeito {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
     margin: 40px;
     width: 300px;   
-    min-height: 100px;
+    min-height: 200px;
     max-height: 700px;
     background-color: #5E5768;
     border-radius: 15px;
@@ -42,22 +42,59 @@ p {
     font-family: 'Nexa-Heavy';
 }
 
+
 ::placeholder {
     font-family: 'Nexa-Heavy';
-    color: #000;
+    color: #1b1b1b83;
 }
-#IdTarefa {
-    width: 250px;
-    height: 30px;
-    border-radius: 6px;
-    border-color: #5E5768;
-    background-color: #5E5768;
+#IdNomeTarefa {
+    width: 280px;
+    height: 50px;
+    border: 1px solid;
+    border-radius: 7px;
+    background-color: #3a373fd0;
+    margin: 10px;
+    font-family: 'Nexa-Heavy';
 
 }
-#IdTarefa:focus {
-    color: aqua;
-    box-shadow: 0 0 0 0;
+#IdNomeTarefa:focus {
     outline: 0;
 }
+.BotaoAddTarefa{
+    width: 250px;
+    height: 30px;
+    margin: 0px 0px 10px 10px;
+    background-color: rgb(119, 119, 240);
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #000;
+    cursor: pointer;
+}
+.BotaoAddTarefa:hover {
+    background-color: rgb(157, 157, 247) ;
+}
 
+.CardTarefa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 280px;
+    height: 40px;
+    background-color: #3A445D;
+    border: 2px solid #000000;
+    border-radius: 4px;
+}
 
+.TarefaFeito {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 280px;
+    height: 40px;
+    border: 2px solid rgb(66, 69, 70);
+    border-radius: 4px;
+    text-decoration: line-through;
+    color: rgb(42, 47, 48);
+    background-color: cadetblue;
+
+}
