@@ -13,18 +13,17 @@
     <div class="container">
         <!--Barra Superior-->
         <!--Colunas de cada status das tarefas-->
-        <div class="ContainerAfazer">
+        <div class="ContainerAfazer" id="IdContainerAfazer">
         <div class="AfazerTittle">            
             <p>A Fazer</p>
         </div>
             <div class="AddTarefa">
                <input type="text" name="NomeTarefa" id="IdNomeTarefa" placeholder="Tarefa...">
-                <button class="BotaoAddTarefa">Adicionar Tarefa</button>
+                <button class="BotaoAddTarefa" id="IdBtnTarefa">Adicionar Tarefa</button>
             </div>
-        
             </div>
 
-            <div class="ContainerFazendo">
+            <div class="ContainerFazendo" id="IdContainerFazendo">
             <div class="FazendoTittle">
                 <p>Fazendo</p>
             </div>
@@ -37,11 +36,12 @@
                 <div class="FeitoTittle">
                     <p>Feito</p>
                </div>
-                <div class="TarefaFeito">
+                <div class="TarefaFeito" id="IdContainerFeito">
                     <p>Tarefa Exemplo</p>
                 </div>
                 
             </div>    
     </div>
+    <script src="script.js" defer></script>
 </body>
 </html>
