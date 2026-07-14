@@ -16,7 +16,8 @@ body {
 .container {
 display: flex;
 align-items: center;
-min-width: none;
+justify-content: space-between;
+width: 100vw;
 }
 
 nav {
@@ -30,10 +31,9 @@ nav {
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin: 40px;
-    width: 300px;   
     min-height: 200px;
-    max-height: 700px;
+    max-height: 1080px;
+    width: 300px;   
     background-color: #5E5768;
     border-radius: 15px;
     
@@ -77,7 +77,7 @@ p {
 .CardTarefa {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     width: 280px;
     height: 40px;
     background-color: #3A445D;
@@ -85,6 +85,21 @@ p {
     border-radius: 4px;
     margin-bottom: 10px;
 }
+
+
+
+
+.BotaoEditarTarefa {
+    background-color: #3A445D;
+    border: 2px solid #181b24;
+    cursor: pointer;
+ 
+}
+
+.BotaoEditarTarefa:hover {
+    background-color: #6374a0;
+}
+
 
 .TarefaFeito {
     display: flex;
