@@ -13,16 +13,18 @@ body {
     background-color: #3A445D;
 }
 
-.container {
-display: flex;
-align-items: center;
-justify-content: space-between;
-width: 100vw;
+
+ul {
+    display: flex;
+     list-style: none;
 }
+
+
 
 nav {
     display: flex;
     justify-content: center;
+    margin-bottom: 10px;
     width: 100%;
     color: #EDCBB1;
 }
@@ -30,14 +32,16 @@ nav {
 .ContainerAfazer, .ContainerFazendo, .ContainerFeito {
     display: flex;
     align-items: center;
+    width: 300px;
+    margin-right: 80px;
+    min-height: 300px;
     flex-direction: column;
-    min-height: 200px;
-    max-height: 1080px;
-    width: 300px;   
     background-color: #5E5768;
     border-radius: 15px;
     
 }
+
+
 p {
     font-family: 'Nexa-Heavy';
 }

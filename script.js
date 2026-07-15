@@ -3,6 +3,7 @@ let ColunaFazendo = document.getElementById('IdContainerFazendo');
 let ColunaFeito = document.getElementById('IdContainerFeito');
 let InputNomeTarefa = document.getElementById("IdNomeTarefa");
 let BtnAddTarefa = document.getElementById('IdBtnTarefa');
+let Tarefas = [];
 let NomeTarefa = InputNomeTarefa;
 
 
@@ -30,7 +31,7 @@ BtnAddTarefa.addEventListener('click', function(){
         let ContainerBtns = document.createElement('div');
         let EditarBtn = document.createElement('button');
         let ApagarBtn = document.createElement('button');
-        
+        ColunaAfazer.style.maxHeight = "850px";
         let ImgEditar = document.createElement('img');
         let ImgApagar = document.createElement('img');
         ContainerBtns.className = "ContainerBotoes";
@@ -48,13 +49,20 @@ BtnAddTarefa.addEventListener('click', function(){
         ColunaAfazer.appendChild(Card)
         
         let Id = Date.now()
-        let IdCard = "Card- " +Id;
+        let IdCard = "Card-" +Id;
         
-        
-        let Tarefas = {
+        let NovaTarefa = {
+            id: Id,
             Nome: NomeTarefaCard,
-            id: IdCard
+            IdCard: IdCard,
         }
+        Tarefas.push(NovaTarefa);
+
+        ApagarBtn.addEventListener('click', () =>{
+            Card.remove();
+            Tarefas.filter(item => item.id !== Id);
+            console.log(Tarefas);
+        })
         
 })
 
