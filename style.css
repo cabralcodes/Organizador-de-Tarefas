@@ -11,6 +11,8 @@
 
 body {
     background-color: #3A445D;
+    width: 100vw;
+    height: 100vh;
 }
 
 
@@ -90,8 +92,46 @@ p {
     margin-bottom: 10px;
 }
 
+.ContainerEspacoEditar {
+    display: flex;
+    justify-content:center;
+    flex-direction: column;
+    align-items:center;
+    height: 400px;
+    
+}
 
+textarea {
+    width: 360px;
+    height: 208px;
+    resize: none;
+    border-radius: 7px;
+    background-color: #181b24;
+    border-color: #0000009d;
+    color: white;
+    font-family: 'Nexa-Heavy';
+    font-size: 20px;
+}
 
+.SalvarNovoNome {
+font-family: 'Nexa-Heavy';
+width: 130px;
+height: 30px;
+margin-left: 230px;
+margin-top: 2px;
+background-color: #3a5fbd;
+border: 2px solid #000;
+border-radius: 4px;
+}
+
+.SalvarNovoNome:hover {
+    cursor: pointer;
+    background-color: #4979f1;
+}
+
+textarea:focus {
+    outline: none;
+}
 
 .BotaoEditarTarefa {
     background-color: #3A445D;
