@@ -15,10 +15,18 @@ body {
     height: 100vh;
 }
 
+.container {
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+}
+
 
 ul {
     display: flex;
-     list-style: none;
+    align-items: center;
+    list-style: none;
 }
 
 
@@ -31,10 +39,11 @@ nav {
     color: #EDCBB1;
 }
 
-.ContainerAfazer, .ContainerFazendo, .ContainerFeito {
+.Columns {
     display: flex;
     align-items: center;
-    width: 300px;
+    width: 500px;
+    height: 850px;
     margin-right: 80px;
     min-height: 300px;
     flex-direction: column;
@@ -82,10 +91,9 @@ p {
 
 .CardTarefa {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    width: 280px;
-    height: 40px;
+    width: 480px;
+    height: 90px;
     background-color: #3A445D;
     border: 2px solid #000000;
     border-radius: 4px;
@@ -94,6 +102,7 @@ p {
 
 .ContainerEspacoEditar {
     display: flex;
+    position: fixed;
     justify-content:center;
     flex-direction: column;
     align-items:center;
@@ -129,7 +138,7 @@ border-radius: 4px;
     background-color: #4979f1;
 }
 
-textarea:focus {
+.SemFoco:focus {
     outline: none;
 }
 
@@ -157,4 +166,9 @@ textarea:focus {
     color: rgb(42, 47, 48);
     background-color: cadetblue;
 
+}
+
+.ColumnHighlight {
+    background-color: #5c6c92;
+    border: 2px solid #2482ff;
 }
