@@ -10,7 +10,7 @@ let DraggedCard;
 let Columns = document.querySelectorAll('.Columns')
 
 
-function CriarTarefa(){
+BtnAddTarefa.addEventListener("click",() => {
     if(InputNomeTarefa.value === '' || InputNomeTarefa.value.length <= 2){
         InputNomeTarefa.style.borderColor = "red";
         BtnAddTarefa.style.borderColor = "red";
@@ -24,31 +24,27 @@ function CriarTarefa(){
         InputNomeTarefa.style.borderColor = "black";
     }       
     let Card = document.createElement('div');
-    let NomeTarefaCard = document.createElement('p');
+    let NomeTarefaCard = document.createElement('section');
     NomeTarefaCard.className = "TituloTarefa";
     NomeTarefaCard.innerText =InputNomeTarefa.value;
     Card.className = 'CardTarefa';
     NomeTarefaCard.style.fontFamily = 'Nexa-Heavy';
     Card.draggable = "true";
-    let ContainerBtns = document.createElement('div');
-    let EditarBtn = document.createElement('button');
-    let ApagarBtn = document.createElement('button');
-    ColunaAfazer.style.maxHeight = "850px";
-    let ImgEditar = document.createElement('img');
+    let BtnApagar = document.createElement("button");
+    BtnApagar.classList.add("BotaoEditarTarefa");
     let ImgApagar = document.createElement('img');
-    ContainerBtns.className = "ContainerBotoes";
-    ApagarBtn.className = "BotaoEditarTarefa";
-    EditarBtn.className = "BotaoEditarTarefa";
-    ImgEditar.src = "./images/pencil_112448.png";
     ImgApagar.src = "./images/rubbishbin_102620.png";
-    ImgEditar.alt = "BotaoDeEditar";
     ImgApagar.alt = "BotaoDeApagar";
+    BtnApagar.append(ImgApagar);
+    let BtnSalvar = document.createElement("button");
+    BtnSalvar.innerText = "Salvar";
+    BtnSalvar.classList.add("SalvarNovoNome");
+    let CorpoBtn = document.createElement("div");
+    CorpoBtn.classList.add("ContainerBtns");
+    BtnSalvar.style.display = "none";
+   
     
-    EditarBtn.append(ImgEditar);
-    ApagarBtn.append(ImgApagar);
-    ContainerBtns.append(EditarBtn, ApagarBtn)
-    Card.append(NomeTarefaCard, ContainerBtns);
-    ColunaAfazer.appendChild(Card)
+    
     
     let Id = Date.now()
     let IdCard = "Card-" +Id;
@@ -60,43 +56,33 @@ function CriarTarefa(){
     }
     Tarefas.push(NovaTarefa);
     
-
-    EditarBtn.addEventListener('click', () => {
-        let CorpoEditar = document.createElement('div');
-        let EspacoEditar = document.createElement('textarea');
-        let BtnSalvar = document.createElement('button');
-
-        CorpoEditar.className = "ContainerEspacoEditar";
-        BtnSalvar.className = "SalvarNovoNome";
+    Card.addEventListener("dblclick", () => {
+        NomeTarefaCard.contentEditable = "true";
+        Card.focus();
+        BtnSalvar.style.display = "block";
         
-        BtnSalvar.textContent = 'Salvar';
-        EspacoEditar.value = InputNomeTarefa.value;
-        CorpoEditar.append(EspacoEditar, BtnSalvar);
-        Container.append(CorpoEditar);
-        
-        
-        BtnSalvar.addEventListener('click', () => {
-            CorpoEditar.remove();
-            NomeTarefaCard.innerText = EspacoEditar.value;
-            NovaTarefa.Nome = EspacoEditar.value;
-            
-            
-        })
         
     })
     
     
+    BtnSalvar.addEventListener("click", ()=> {
+        NovaTarefa.Nome = NomeTarefaCard.innerText;
+        BtnSalvar.style.display = "none";
+    })
     
-    ApagarBtn.addEventListener('click', () =>{
+    BtnApagar.addEventListener('click', () =>{
         Card.remove();
         Tarefas = Tarefas.filter(item => item.id !== Id);
         console.log(Tarefas);
     })
-    
-    Card.addEventListener("dragstart",DragStart);
-}
 
-BtnAddTarefa.addEventListener('click', CriarTarefa)
+    CorpoBtn.append(BtnSalvar, BtnApagar)
+    Card.append(NomeTarefaCard, CorpoBtn);
+    ColunaAfazer.appendChild(Card);
+    Card.addEventListener("dragstart",DragStart);
+});
+
+
 
 
     
@@ -110,8 +96,7 @@ BtnAddTarefa.addEventListener('click', CriarTarefa)
     };
     
     Cards.forEach((card) => {
-        card.addEventListener("dragstart",DragStart)
-        console.log('coletando cards')
+        card.addEventListener("dragstart",DragStart);
     })
 
 

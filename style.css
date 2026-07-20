@@ -53,8 +53,9 @@ nav {
 }
 
 
-p {
+section {
     font-family: 'Nexa-Heavy';
+    width: 300px;
 }
 
 
@@ -122,11 +123,15 @@ textarea {
     font-size: 20px;
 }
 
+.ContainerBtns {
+    display: flex;
+}
+
 .SalvarNovoNome {
+display: none;
 font-family: 'Nexa-Heavy';
 width: 130px;
 height: 30px;
-margin-left: 230px;
 margin-top: 2px;
 background-color: #3a5fbd;
 border: 2px solid #000;
@@ -138,11 +143,9 @@ border-radius: 4px;
     background-color: #4979f1;
 }
 
-.SemFoco:focus {
-    outline: none;
-}
 
 .BotaoEditarTarefa {
+    height: 40px;
     background-color: #3A445D;
     border: 2px solid #181b24;
     cursor: pointer;
