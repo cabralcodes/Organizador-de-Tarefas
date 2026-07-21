@@ -52,7 +52,9 @@ nav {
     
 }
 
-
+p {
+    font-family: 'Nexa-Heavy';
+}
 section {
     font-family: 'Nexa-Heavy';
     width: 300px;

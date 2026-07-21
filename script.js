@@ -4,11 +4,19 @@ let ColunaFazendo = document.getElementById('IdContainerFazendo');
 let ColunaFeito = document.getElementById('IdContainerFeito');
 let InputNomeTarefa = document.getElementById("IdNomeTarefa");
 let BtnAddTarefa = document.getElementById('IdBtnTarefa');
-let Tarefas = [];
+let Tarefas = JSON.parse(localStorage.getItem("Tarefas"))||[];
 let Cards = document.querySelectorAll(".CardTarefa");    
 let DraggedCard;
 let Columns = document.querySelectorAll('.Columns')
-
+let Id = Date.now()
+    let IdCard = "Card-" +Id;
+    
+    let NovaTarefa = {
+        id: Id,
+        Nome: InputNomeTarefa.value,
+        IdCard: IdCard,
+        Teste: "Testando"
+    }
 
 BtnAddTarefa.addEventListener("click",() => {
     if(InputNomeTarefa.value === '' || InputNomeTarefa.value.length <= 2){
@@ -46,15 +54,9 @@ BtnAddTarefa.addEventListener("click",() => {
     
     
     
-    let Id = Date.now()
-    let IdCard = "Card-" +Id;
-    
-    let NovaTarefa = {
-        id: Id,
-        Nome: InputNomeTarefa.value,
-        IdCard: IdCard,
-    }
+    NovaTarefa.Nome = NomeTarefaCard.innerText;
     Tarefas.push(NovaTarefa);
+    
     
     Card.addEventListener("dblclick", () => {
         NomeTarefaCard.contentEditable = "true";
@@ -66,21 +68,35 @@ BtnAddTarefa.addEventListener("click",() => {
     
     
     BtnSalvar.addEventListener("click", ()=> {
-        NovaTarefa.Nome = NomeTarefaCard.innerText;
+         let NovoNome = NomeTarefaCard.innerText;
+        NovaTarefa.Nome = NovoNome;
+        let index = Tarefas.findIndex(item => item.id === Id);
+        if(index === -1){
+            console.log("ERROR, TAREFA INEXISTENTE");
+        } else {
+            console.log(Tarefas);
+            Tarefas[index].Nome = NovoNome;
+        }
+        localStorage.setItem("Tarefas", JSON.stringify(Tarefas));
         BtnSalvar.style.display = "none";
+        Card.contentEditable = "false";
     })
     
     BtnApagar.addEventListener('click', () =>{
         Card.remove();
-        Tarefas = Tarefas.filter(item => item.id !== Id);
+        Tarefas = Tarefas.filter(item => item.id !== item.id);
         console.log(Tarefas);
+        localStorage.setItem("Tarefas", JSON.stringify(Tarefas));
     })
 
     CorpoBtn.append(BtnSalvar, BtnApagar)
     Card.append(NomeTarefaCard, CorpoBtn);
     ColunaAfazer.appendChild(Card);
     Card.addEventListener("dragstart",DragStart);
+    localStorage.setItem("Tarefas", JSON.stringify(Tarefas));
+    
 });
+
 
 
 
@@ -129,9 +145,84 @@ BtnAddTarefa.addEventListener("click",() => {
         if(target.classList.contains("ContainerFeito")){
             DraggedCard.className = "TarefaFeito";
             
+            
+        }
+        if(target){
+            NovaTarefa.Coluna = target;
         }
    };
 
+
+
+   function CarregarTarefas(){
+    const TarefasSalvas = localStorage.getItem("Tarefas");
+    if(TarefasSalvas) {
+        Tarefas = JSON.parse(TarefasSalvas);
+
+        Tarefas.forEach( (Tarefa) => {
+            let card = document.createElement("div");
+            card.classList.add("CardTarefa");
+            card.id = Tarefa.IdCard;
+            let NomeTarefa = document.createElement("section");
+            NomeTarefa.innerText = Tarefa.Nome;
+            
+            
+
+             let BtnApagar = document.createElement("button");
+            let ImgApagar = document.createElement('img');
+            ImgApagar.src = "./images/rubbishbin_102620.png";
+            ImgApagar.alt = "BotaoDeApagar";
+            BtnApagar.append(ImgApagar);
+            BtnApagar.classList.add("BotaoEditarTarefa");
+            let BtnSalvar = document.createElement("button");
+            BtnSalvar.innerText = "Salvar";
+            BtnSalvar.classList.add("SalvarNovoNome");
+            let CorpoBtn = document.createElement("div");
+            CorpoBtn.classList.add("ContainerBtns");
+            BtnSalvar.style.display = "none";
+
+             card.addEventListener("dblclick", () => {
+                NomeTarefa.contentEditable = "true";
+                card.focus();
+                BtnSalvar.style.display = "block";
+            })
+             BtnApagar.addEventListener('click', () =>{
+        card.remove();
+        Tarefas = Tarefas.filter(item => item.id !== item.id);
+        console.log(Tarefas);
+        localStorage.setItem("Tarefas", JSON.stringify(Tarefas));
+        })
+
+
+        
+        BtnSalvar.addEventListener("click", ()=> {
+        let NovoNome = NomeTarefa.innerText;
+        NovaTarefa.Nome = NovoNome;
+        let index = Tarefas.findIndex(item => item.id === Id);
+        if(index === -1){
+            console.log('AAAAAAAAAA');
+        } else {
+            console.log(Tarefas);
+            Tarefas[index].Nome = NovoNome;
+        }
+        localStorage.setItem("Tarefas", JSON.stringify(Tarefas));
+        BtnSalvar.style.display = "none";
+    })
+
+
+        
+        CorpoBtn.append(BtnSalvar, BtnApagar)
+        card.append(NomeTarefa, CorpoBtn);
+            
+            
+            
+            card.addEventListener("dragstart",DragStart);
+            localStorage.setItem("Tarefas", JSON.stringify(Tarefas));
+            ColunaAfazer.append(card);
+
+        })
+    }
+};
 
 
    Columns.forEach((column) => {
@@ -140,7 +231,10 @@ BtnAddTarefa.addEventListener("click",() => {
     column.addEventListener("dragenter", DragEnter);
     column.addEventListener("dragleave", DragLeave);
     column.addEventListener("drop", Drop);
+    
    })
+
+   CarregarTarefas();
 
 
 
