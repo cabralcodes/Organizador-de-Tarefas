@@ -8,15 +8,7 @@ let Tarefas = JSON.parse(localStorage.getItem("Tarefas"))||[];
 let Cards = document.querySelectorAll(".CardTarefa");    
 let DraggedCard;
 let Columns = document.querySelectorAll('.Columns')
-let Id = Date.now()
-    let IdCard = "Card-" +Id;
-    
-    let NovaTarefa = {
-        id: Id,
-        Nome: InputNomeTarefa.value,
-        IdCard: IdCard,
-        Teste: "Testando"
-    }
+
 
 BtnAddTarefa.addEventListener("click",() => {
     if(InputNomeTarefa.value === '' || InputNomeTarefa.value.length <= 2){
@@ -50,7 +42,15 @@ BtnAddTarefa.addEventListener("click",() => {
     let CorpoBtn = document.createElement("div");
     CorpoBtn.classList.add("ContainerBtns");
     BtnSalvar.style.display = "none";
-   
+    let Id = Date.now()
+    let IdCard = "Card-" +Id;
+    
+    let NovaTarefa = {
+        id: Id,
+        Nome: InputNomeTarefa.value,
+        IdCard: IdCard,
+        Teste: "Testando"
+    }
     
     
     
@@ -68,7 +68,7 @@ BtnAddTarefa.addEventListener("click",() => {
     
     
     BtnSalvar.addEventListener("click", ()=> {
-         let NovoNome = NomeTarefaCard.innerText;
+        let NovoNome = NomeTarefaCard.innerText;
         NovaTarefa.Nome = NovoNome;
         let index = Tarefas.findIndex(item => item.id === Id);
         if(index === -1){
@@ -79,12 +79,12 @@ BtnAddTarefa.addEventListener("click",() => {
         }
         localStorage.setItem("Tarefas", JSON.stringify(Tarefas));
         BtnSalvar.style.display = "none";
-        Card.contentEditable = "false";
+        NomeTarefaCard.contentEditable = "false";
     })
     
     BtnApagar.addEventListener('click', () =>{
         Card.remove();
-        Tarefas = Tarefas.filter(item => item.id !== item.id);
+        Tarefas = Tarefas.filter(item => item.id !== Id);
         console.log(Tarefas);
         localStorage.setItem("Tarefas", JSON.stringify(Tarefas));
     })
@@ -147,14 +147,12 @@ BtnAddTarefa.addEventListener("click",() => {
             
             
         }
-        if(target){
-            NovaTarefa.Coluna = target;
-        }
+        
    };
 
 
 
-   function CarregarTarefas(){
+function CarregarTarefas(){
     const TarefasSalvas = localStorage.getItem("Tarefas");
     if(TarefasSalvas) {
         Tarefas = JSON.parse(TarefasSalvas);
@@ -167,6 +165,11 @@ BtnAddTarefa.addEventListener("click",() => {
             NomeTarefa.innerText = Tarefa.Nome;
             
             
+            let Id = Date.now();
+
+            
+
+
 
              let BtnApagar = document.createElement("button");
             let ImgApagar = document.createElement('img');
@@ -186,28 +189,23 @@ BtnAddTarefa.addEventListener("click",() => {
                 card.focus();
                 BtnSalvar.style.display = "block";
             })
-             BtnApagar.addEventListener('click', () =>{
+            
+            
+            BtnSalvar.addEventListener("click", ()=> {
+                let NovoNome = NomeTarefa.innerText;
+                let index = Tarefas.findIndex(item => item.id === Id);
+                console.log(Tarefas);
+                Tarefas[index].Nome = NovoNome;
+                localStorage.setItem("Tarefas", JSON.stringify(Tarefas));
+                BtnSalvar.style.display = "none";
+                NomeTarefa.contentEditable = "false";
+            })
+        BtnApagar.addEventListener('click', () =>{
         card.remove();
-        Tarefas = Tarefas.filter(item => item.id !== item.id);
+        Tarefas = Tarefas.filter(item => item.id !== Id);
         console.log(Tarefas);
         localStorage.setItem("Tarefas", JSON.stringify(Tarefas));
-        })
-
-
-        
-        BtnSalvar.addEventListener("click", ()=> {
-        let NovoNome = NomeTarefa.innerText;
-        NovaTarefa.Nome = NovoNome;
-        let index = Tarefas.findIndex(item => item.id === Id);
-        if(index === -1){
-            console.log('AAAAAAAAAA');
-        } else {
-            console.log(Tarefas);
-            Tarefas[index].Nome = NovoNome;
-        }
-        localStorage.setItem("Tarefas", JSON.stringify(Tarefas));
-        BtnSalvar.style.display = "none";
-    })
+})
 
 
         
@@ -220,8 +218,9 @@ BtnAddTarefa.addEventListener("click",() => {
             localStorage.setItem("Tarefas", JSON.stringify(Tarefas));
             ColunaAfazer.append(card);
 
-        })
-    }
+    })
+  }
+  localStorage.setItem("Tarefas", JSON.stringify(Tarefas));
 };
 
 
