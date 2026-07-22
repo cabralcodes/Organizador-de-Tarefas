@@ -72,10 +72,11 @@ BtnAddTarefa.addEventListener("click",() => {
         NovaTarefa.Nome = NovoNome;
         let index = Tarefas.findIndex(item => item.id === Id);
         if(index === -1){
-            console.log("ERROR, TAREFA INEXISTENTE");
+             console.log(Tarefas);
+            Tarefas[index].Nome = NovoNome;
         } else {
             console.log(Tarefas);
-            Tarefas[index].Nome = NovoNome;
+            
         }
         localStorage.setItem("Tarefas", JSON.stringify(Tarefas));
         BtnSalvar.style.display = "none";
@@ -167,8 +168,6 @@ function CarregarTarefas(){
             
             let Id = Date.now();
 
-            
-
 
 
              let BtnApagar = document.createElement("button");
@@ -193,9 +192,13 @@ function CarregarTarefas(){
             
             BtnSalvar.addEventListener("click", ()=> {
                 let NovoNome = NomeTarefa.innerText;
-                let index = Tarefas.findIndex(item => item.id === Id);
+                let index = Tarefas.findIndex(item => item.id === Tarefa.id);
+                if(index === -1){
+                    Tarefas[index].Nome = NovoNome;
+                }else {
                 console.log(Tarefas);
-                Tarefas[index].Nome = NovoNome;
+                
+                }
                 localStorage.setItem("Tarefas", JSON.stringify(Tarefas));
                 BtnSalvar.style.display = "none";
                 NomeTarefa.contentEditable = "false";
@@ -220,7 +223,6 @@ function CarregarTarefas(){
 
     })
   }
-  localStorage.setItem("Tarefas", JSON.stringify(Tarefas));
 };
 
 
