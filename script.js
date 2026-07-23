@@ -8,7 +8,7 @@ let Tarefas = JSON.parse(localStorage.getItem("Tarefas"))||[];
 let Cards = document.querySelectorAll(".CardTarefa");    
 let DraggedCard;
 let Columns = document.querySelectorAll('.Columns')
-
+let NovaTarefa = {};
 
 BtnAddTarefa.addEventListener("click",() => {
     if(InputNomeTarefa.value === '' || InputNomeTarefa.value.length <= 2){
@@ -45,11 +45,11 @@ BtnAddTarefa.addEventListener("click",() => {
     let Id = Date.now()
     let IdCard = "Card-" +Id;
     
-    let NovaTarefa = {
+    NovaTarefa = {
         id: Id,
         Nome: InputNomeTarefa.value,
         IdCard: IdCard,
-        Teste: "Testando"
+        Coluna: ColunaAfazer
     }
     
     
@@ -107,7 +107,7 @@ BtnAddTarefa.addEventListener("click",() => {
     const DragStart = (event) => {
         DraggedCard = event.target;
         event.dataTransfer.effectAllowed = "move";
-        console.log(DraggedCard);
+        
 
 
     };
@@ -147,6 +147,10 @@ BtnAddTarefa.addEventListener("click",() => {
             DraggedCard.className = "TarefaFeito";
             
             
+        }
+        if(target){
+            NovaTarefa.Coluna = target;
+            console.log(target);
         }
         
    };
@@ -193,8 +197,8 @@ function CarregarTarefas(){
             BtnSalvar.addEventListener("click", ()=> {
                 let NovoNome = NomeTarefa.innerText;
                 let index = Tarefas.findIndex(item => item.id === Tarefa.id);
-                if(index === -1){
-                    Tarefas[index].Nome = NovoNome;
+                if(index !== -1){
+                    Tarefas[index].Nome =  NovoNome;
                 }else {
                 console.log(Tarefas);
                 
@@ -205,7 +209,7 @@ function CarregarTarefas(){
             })
         BtnApagar.addEventListener('click', () =>{
         card.remove();
-        Tarefas = Tarefas.filter(item => item.id !== Id);
+        Tarefas = Tarefas.filter(item => item.id !== Tarefa.id);
         console.log(Tarefas);
         localStorage.setItem("Tarefas", JSON.stringify(Tarefas));
 })
@@ -216,10 +220,10 @@ function CarregarTarefas(){
         card.append(NomeTarefa, CorpoBtn);
             
             
-            
             card.addEventListener("dragstart",DragStart);
-            localStorage.setItem("Tarefas", JSON.stringify(Tarefas));
             ColunaAfazer.append(card);
+            localStorage.setItem("Tarefas", JSON.stringify(Tarefas));
+            
 
     })
   }
