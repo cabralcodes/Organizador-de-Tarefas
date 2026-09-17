@@ -1,6 +1,6 @@
 function Card(){
     return <>
-        <div>
+        <div >
             <h1>NomeTarefa</h1>
             <p>TarafaTal</p>
             <p>Data</p>

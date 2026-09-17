@@ -1,18 +1,16 @@
 import Card from "./Card";
-import addTask from "./AddTask";
-
-function Collumn(){
+import styles from "./collumn.module.css"
+function Collumn({name}){
 
     return <>
-    <div>
-        <header>Teste</header>
-        <div className="Cards">
+    <div className={styles.collumn}>
+        <header>{name}</header>
+        <div>
         <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <addTask></addTask>
+        <button>AdicionarTarefa</button>
         </div>
     </div>
     
     </>
 }
+export default Collumn;

@@ -3,4 +3,17 @@
 
 :root {
     --font-primary:'Space Grotesk', sans-serif;
+    --color-background:#12141A;
+    --color-collumn:#1D2027;
+    --color-floating-bar:#1D2027;
+
 }
+ body {
+    font-family: var(--font-primary);
+    background-color: var(--color-background);
+    margin: 0;
+    padding: 0;
+ }
+ h1,p,header {
+    color: white;
+ }
